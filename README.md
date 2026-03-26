@@ -5,7 +5,7 @@ It lets you edit channels and advanced settings in spreadsheets, then rebuild a 
 
 ## Author
 
-**Nikos K. Kantarakias — SV1TSD**  
+**Nikos K. Kantarakias - SV1TSD**  
 YouTube: [youtube.com/@NikosKantarakias](https://youtube.com/@NikosKantarakias)
 
 ---
@@ -109,7 +109,7 @@ Compliance with local radio regulations (frequency allocations, power limits, li
 
 ## License
 
-Copyright (C) 2026 SV1TSD Nikos ?. Kantarakias
+Copyright (C) 2026 SV1TSD Nikos K. Kantarakias
 
 This program is free software: you can redistribute it and/or modify it under the terms of the **GNU Affero General Public License** as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version.
 You should have received a copy of the GNU Affero General Public License along with this program. If not, see <https://www.gnu.org/licenses/>.
