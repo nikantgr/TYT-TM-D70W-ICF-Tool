@@ -503,9 +503,6 @@ def main():
         if "Password" in settings:
             pwd = settings["Password"].strip()
             global_set[26:32] = encode_text_gbk(pwd, 6)
-            # Auto-manage the enable bit from the password value itself,
-            # so clearing Password also clears the enable flag.
-            global_set[18] = set_bits(global_set[18], 7, 1, 1 if pwd else 0)
         icf.set_bytes(CON_SET_BEG_ADDR, global_set)
 
         # 2. Signaling Global Settings

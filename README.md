@@ -22,7 +22,18 @@ YouTube: [youtube.com/@NikosKantarakias](https://youtube.com/@NikosKantarakias)
 
 ## Usage
 
-### 1) Decode ICF to CSV
+### Using the GUI (Recommended)
+
+To launch the graphical interface, simply run:
+
+```bash
+python GUIRUN.py
+```
+
+The GUI requires no external dependencies (it uses the built-in `tkinter` library) and provides a user-friendly way to decode and encode your `.icf` and CSV files.
+<img src="GUIRUN-screenshot.png" alt="GUIRUN-screenshot" width="600">
+
+### 1) Decode ICF to CSV via CLI
 
 ```bash
 python icf_tool.py decode <input.icf> [out_channels.csv] [out_settings.csv]
@@ -32,7 +43,7 @@ python icf_tool.py decode <input.icf> [out_channels.csv] [out_settings.csv]
 - `out_channels.csv` (optional): defaults to `<filename>-YYYYMMDD-channels.csv`.
 - `out_settings.csv` (optional): defaults to `<filename>-YYYYMMDD-settings.csv`.
 
-### 2) Encode CSV to ICF
+### 2) Encode CSV to ICF via CLI
 
 ```bash
 python icf_tool.py encode <in_channels.csv> <in_settings.csv> <output.icf> [template.icf]
