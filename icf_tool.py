@@ -295,7 +295,7 @@ def encode_tone(tone_str, is_dcs):
 
 
 BUILTIN_TEMPLATE_HEADER = ['COM1', '#Comment=TYT INC.(C)  2013  #MapRev=1', '38400']
-BUILTIN_TEMPLATE_ROWS_B85 = '''c-rln4RBP&9l-zhzXU?mF@i%QEzYCRks|25`$+C)tmP$l$sJsh^X_s9NNuDzSd2<3VN$jB@S}~+fJqF(=;VwL=uKe;rbQ(V11U0oQoxRb9ZSw=9Za1P0wD*ZZR!5+eeEUzr#dtgZZp5!yWj4<-T&^syM1|)*CbJ9oV)hiwH-M*p^C6%lP9$%k>I6$=(!{kymWl<LJ|pHI=ecONbu72!sa9rye#_V?~+LHviQf_lSuH=t?W!9!AsBdt|Stilx?|tl1T7U{%l_o30~UYelv*#FCAMCB$42ybIp56BzWn1@JJE~UKV{`a1@Bm?5AT!PUZahF@IU!?Fl4E#xt_oUsm_q7L?|;XR60@aw1g`CU0A}4hcbaE?kF%AbUgWkPu||+8!XZE-}ek-}r0~5Q5x!O$rD>Hb4Cl5SsK=d1Yr&{M1n(G^vEb5lPzbOu>?QJ<wonu(B}2awH}z(K{2^wyzb@iq`myws19*fdl0Uyn1^p>Lp2f7d@DQe?FmC?+h0+S#nE73Jxyrft}W!85v`;{P6Jv5>%3%bDmQUDV0lZU5`ulwCS>%S}&dHS&w};x9P1{+nMx-UT(+c@3bPFQ}0r&?r1x9l!~&t??gM!tPy2&xix`1mWeWWc5(vUkMgocE{V@dV0ViuJG7FKWu+;|U!X^n!y>AYl~B9|39a)%S0v_CoYy39<x1h4ZeKFej(xAS2-5pXT?%5Wdf*TqLT!}X)ekL8!IZc@#p=*i9cgIC$vrLjto2!=pH+qTB(U~?Fh>sGlE)I*`S(`6OJR1(1=9O>reNjI%qh<FbBiYhWmSAcF{i(yF@e1wnbp}jon=k8r(kBZ2Rv4fQPNisPQi|)s-%)6OLhd;<Bq=?vzd|Jr>D0dkzhYGN|Bg7AT{N-<6HH@fXF_$IRzbag)Z5vg8mfz<40!aNqRTjlLGg{rYvGo(N`Tcq?ZinomU4rBa6MKVku~??*ST5UHY-01qp4CgXFxY`kIm8Wvw0&FC!C+TaeIXWMOe_)Ng;X1qr^S^4+^ykl<z6pPz5WZb@t?Qt)Xr6513q=~5&;B9dC?U5b7c^Rh%=ORAiak-pludw}3emPuE!Pq3@ZmCWYdQ=%`MKJ3$n&Qn5@Mvyd0>J!J8EY;_Tm)>0uwd2{3jq0?(Jb~bc%}5C6-2X;15+qma(zdi6mmgHCw`kS<pWK>)$9(FtS*@-*_rifCT|m%vv^uA)yjlr+=X9^W4+%{=ZABIShvw$*1wxZb)Gz&H<?i?11wxau!{I7+z5ntdAh?oBw0__a5S)zGEc)ynAo!Bu!q@i$!AY;L_Xk}-@G`LBjV>TKSzft+?I9pI8K`V3*bRgxBlD?wf2<n_UMjmby$Xb0Jy;P4OQEXQfDmLnvI_`JM*Y5sq!j$23kY78A9n5pf|pTu$37s0>ig%MhEDsJ8Tk_XhFxHjC28fdL5M#11t;y26lyyTgee`8bbaDD5T<mh)d^F&Bq^wz2Evp@l0=P&4HZk$?6NO`Fr{0P?p>G$!jv9K>MctHVMy5~Nu8lI5T;}iQJ91&Sws}K5WCDG>U;PY5T;}ih1OUtgeh4>eQ#PVgeh4>b@v_v!jvqc87qzfVM-R!wkMAPVM-R!@@I|#VMsfRX!hVB5T;}i)jx9@2vf3%u0Hz(5T;}i1>3#^!jw*RI)p*CyVQon>P2cpVs#c#ci%xE)V0K<qy)lE#ixNVWFuQlXZ=G!7_!uFw>#(k3JIb5k?+TmFlDvuK0GUq1Yfdz-p8wvFl8iAapd{Okl?G^7DpdP!jwU_=IdWX!jxg9tZCJYNNBQDsZ_j5vttty{5f53J-!hMPTCzE3pXLbmz4Lvv=s?cMkBtaty_`cO4^*KCvQW7?`P>Fv$i3@g&Fdt9^HckU){5@X%7;7>z?$<y-4uqlm|}jMS?F`Jnn{WB)EyQO9daE1VWe94G-M+fbE)XNN^>cQt!iPAvEcmuarnq?Y==Ew9T_GsIWb4-?Smfo7%6-if|>n6<Y2Zf@Yg2?X+YHy`pr)7Y#v2jVPUY%ZFg*eWG;jc(fk~UKSOu9|Cu)D2ux{_XEL8x4)|&2wr*)ALs{yld`S0w;u>z%DsdAK=9Ij@Awly@X|3b<pdDCbT-~{0tjBZpyUJ)nyd;gs0am`s!ssHmn<H*KMe&x6{Wjzbs9E2B1#XeOM}!bNV}~mnTF&hQOX6o(_nj5l=cmW(y;3tQ97i*rD1MLl+I*24R4(krOTFo212<5f-KrK^$h%_P?W`U<ugz>dq7``8R?!;I0W8F{kp92u`gcxu!b^HUVF!8B(&SBrT4G+d3iX|xETpS=6|{w2|@new*?77F8X2%658#6DnFUA7dL*g9S6q`j%POxsw}KOiUgGeKq-?hhCFwklquO@odf{m#OhxyZMPl;A~T+Vb)T~=;O}7#N%z`>An8Vg5TtOwsmtX*Y(qjQnZsaxn0lk-TW)~c?)aXxV;R6n<)lT;q15|F$Ruly_uEgv^rtL2b(U_x>t;{8Zk)~LU|Y%ajmvmg5g5!nshltWT2R}88=>&|-Kl|z&RFA3^h<v;VZ*AZeTx2u&w)$%jWjI1J^=^v2Xe;)Tpw$+O49Jc!{7IOu%UUP^R9oLOV>PQneO|yIt%NOP)AgppD8)91NP_~win1X8-@ReLp4$V3x82{Bm|I~pKlqFPveq1TuLq@V#?1Oo(+_5H}Z46cdxvg&-YTk!^j`eD3~wV{ISo^g?xm%!<h>$?>G09PRkn)mNK<Wo_Yc0=_^9J8jUkt?Dz3^JE1#1!J@wo|D1z`ixC=bu<EbpvMHM`qZA)K(Kq`m&#_;k9&ve`qrXx|ywZ77{Gumyhx2v!a9Np^SviLCYo_ebT^^EuK493+ch@8F)e^K@t3Ljuz28h;R-;Vc(HAP2*^@Jw*~edjuNLh%Z;a+jy2O(_%8}DJau`SU3)ZlYQo|)>)7Yo5aikbW(NW3;jU(SEH7@nFYo-<TBV8aeax~1N&?wHl;VCnYYK-iVQAIHhqeixwTj?EHH)?h!oA{(uTqxHza;^iF`uYq7eYL}LD@G|72#>mCMqV?%SXK2f=clLZnKb``bzSmhJVlpeujUwQgZ`$hA32O8r*WizBh3kizIJQ>?fzr<o`C=7lo3y~M%hvfFVJgw9SHSN5vY%fzG8nkmPs7F^W|T@``;^l|DTQj%8vgc+*bY1?)3Qw_yGD-&JP+agdpj^KM6r*s$c2z-~D7qhOzqovC@A>Twwgh<o^E(`umsV*MI81DJ0vNU5u1SOfzNn^FJH^#f;xF-M5sUA!c4-<ZE{Rv+-x+&&GeTUcc%7Wq4H5?ma-zE<v)4Q}6$?^Pi1B8-F(bOECWb03Vcg;Q'''
+BUILTIN_TEMPLATE_ROWS_B85 = '''c%1E-Uq}>D6vn@~yQ`}{Na}<65F;YKXsqi-LP29$AtV`yfe@{x2vH!BWiK&=BvF)BsD%`WQ51xMB!tC;5|NrlU<Ce&Adv83rKcWZn=`XB?(F&}P}|kHN4~u~zcbgf-`u&ob7%S*rqQP=m>Nt4n5f0X;WkFH!1vBkM$(~EhevwGL9)R46Vo7BVDZ@`fn@D|v6hh@sDFO3PKWukos2|#`cW5M-GoMUOZV{V=APlz7rTe56O_>sUEPF6^>m~|7F(jd%S(ATyBpOl-80WjF;bHw9Y6wy9CFAZha7UqA%`4t$RURuZZ7!kZ6_nmtqRvzsBfuz7Xil%NEYaS+|EcAxMcUf)3+JP0vq?;Wh4u9svkrY8T8nDOi=p*3ndGJp3z<FS+}z^#fjWjIGvEdw&fS)Bzm-PV7WL~_RGCcvV2~zgB{4cKR6Re^HnwH(TlN>)ODfKn`LZ-XAsXDVnhrju|RUbl?Y^1H9JHxa_7ixukUzQTbl3WeqVhvwc+QUenhR~ljW=$^;Q;m3PsmqQEY~{deG<3ymWN30&pcK3sHGGF0M!@?lK)y-W{0+<-KO!Ra$etCOltC`64qPRTPU2&&NLRLNbGYLYrvr*7^h4?nDTO^nKj=1acc^L})ge|6!xI<&j<}a*|-Q!H7V0Eko0GhtWpndGOfGAuk>D%l@)MeX-)G=@C>XQDu3-Zf{9w>iayN0$;Jm{3?i}>p~7W<d8!S;|LDl90y5X+J<QFNGBt$4)M=x{r`4XAikjX8@<Aw+BLZfwd;5rwnFH=J4RzAZo*hk|H9QVC9k5;qtaSNK_Gh(uC-9SpZ|8B|FQNj<Q#0E<&M@Oy4~vj?LPk8KldL?|7*Q}6X|Ng*AJ5AQPB$i*IIw0W2=w9-OqpS-`@V$*R2*Ydj4-b<^0klkSwtAV>=^Rpw`{)<1YuULHTn7NNIzVc?WWC2Ndr;K<b86{t$9?50r*SK+_XQSDrz>^&Cp~3*c!#q=5m*!>^!xdJW7fkmiRV|9%H0;RBE{1}S?2^3Kmt_Dlk0Um;aZK|VDLrSUs(`3I!ya|o)RVWs02ll8xi?tk(1zrE*wto`%#zrDww`{(|*()wQ<d;=0)C5S?T|EF<~<J7<1$DjM>{_X7lFXg_<Cj'''
 
 def load_builtin_template_icf():
     raw = zlib.decompress(base64.b85decode(BUILTIN_TEMPLATE_ROWS_B85.encode('ascii')))
@@ -668,6 +668,12 @@ def main():
 
                 data[8:10], data[10:12] = rtw.to_bytes(2, 'little'), ctw.to_bytes(2, 'little')
                 
+                # Update Tone Signaling Enable Flag (bit 5 of data[13])
+                if rtw != 0x0FFF or ctw != 0x0FFF:
+                    data[13] |= 0x20
+                else:
+                    data[13] &= ~0x20
+                
                 mode_str, p_str = row.get("Mode") or "FM", row.get("Power") or "70.0W"
                 w_val = 2 if "N" in mode_str else 0
                 p_val = 1 if ("25" in p_str or "Mid" in p_str) else 2 if ("10" in p_str or "Low" in p_str) else 0
@@ -686,8 +692,41 @@ def main():
         icf.set_bytes(CH_SKIP_BEG_ADDR, skip_masks)
         icf.save(sys.argv[4])
         print(f"Encoded to {sys.argv[4]}")
+    elif cmd == "updatetemplate":
+        if len(sys.argv) < 3:
+            print("Usage: icf_tool.py updatetemplate <new_template.icf>")
+            return
+            
+        new_template_icf = sys.argv[2]
+        icf = ICFFile()
+        icf.load(new_template_icf)
+        
+        raw_data = bytearray()
+        for row in icf.rows:
+            raw_data.extend(row)
+            
+        compressed = zlib.compress(raw_data)
+        b85 = base64.b85encode(compressed).decode('ascii')
+        
+        # Rewrite icf_tool.py with the new base85 string
+        with open(__file__, 'r', encoding='utf-8') as f:
+            content = f.read()
+            
+        import re
+        new_content = re.sub(
+            r"(BUILTIN_TEMPLATE_ROWS_B85\s*=\s*''')(.*?)(''')",
+            rf"\g<1>{b85}\g<3>",
+            content,
+            flags=re.DOTALL
+        )
+        
+        with open(__file__, 'w', encoding='utf-8') as f:
+            f.write(new_content)
+            
+        print(f"Successfully updated embedded template in {os.path.basename(__file__)} using {new_template_icf}")
+
     else:
-        print("Unknown command. Use 'decode' or 'encode'.")
+        print("Unknown command. Use 'decode', 'encode', or 'updatetemplate'.")
 
 if __name__ == "__main__":
     main()
