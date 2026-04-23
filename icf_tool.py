@@ -365,22 +365,46 @@ def main():
                 # Rules: Value <= 511 is DCS, > 511 is CTCSS. 0xFFF is OFF.
                 r_is_d = (r_v <= 511 and r_v != 0x0FFF)
                 c_is_d = (c_v <= 511 and c_v != 0x0FFF)
+                r_is_ct = (r_v > 511 and r_v != 0x0FFF)
+                c_is_ct = (c_v > 511 and c_v != 0x0FFF)
                 
-                r_ts = str(r_v) if r_is_d else f"{r_v/10:.1f}" if r_v != 0x0FFF else "88.5"
-                c_ts = str(c_v) if c_is_d else f"{c_v/10:.1f}" if c_v != 0x0FFF else "88.5"
+                # CHIRP column mapping (per CHIRP docs):
+                #   rToneFreq = "Tone"    = TX CTCSS tone (from ctw/c_v)
+                #   cToneFreq = "ToneSql" = RX CTCSS squelch (from rtw/r_v)
+                tone_tx = f"{c_v/10:.1f}" if c_is_ct else "88.5"
+                tone_rx = f"{r_v/10:.1f}" if r_is_ct else "88.5"
                 
-                d_code = c_ts if c_is_d else "023"
-                rd_code = r_ts if r_is_d else "023"
+                # DCS code values (octal, 3-digit, no decimals)
+                # DtcsCode = TX DCS code, RxDtcsCode = RX DCS code
+                d_code = f"{c_v:03o}" if c_is_d else "023"
+                rd_code = f"{r_v:03o}" if r_is_d else "023"
                 
-                # Polarities (0x4000 RX, 0x8000 TX)
-                rp = "R" if (rtw & 0x4000) else "N"
+                # Polarities: first char = TX, second char = RX
                 tp = "R" if (ctw & 0x8000) else "N"
-                pol = rp + tp
+                rp = "R" if (rtw & 0x4000) else "N"
+                pol = tp + rp
+                
+                # Determine CHIRP Tone mode and CrossMode
+                # RX = decode (what we listen for), TX = encode (what we transmit)
+                rx_type = "DTCS" if r_is_d else "Tone" if r_is_ct else ""
+                tx_type = "DTCS" if c_is_d else "Tone" if c_is_ct else ""
                 
                 tone_mode = ""
-                if c_is_d: tone_mode = "DTCS"
-                elif r_v != 0x0FFF and c_v != 0x0FFF: tone_mode = "TSQL"
-                elif c_v != 0x0FFF: tone_mode = "Tone"
+                cross_mode = "Tone->Tone"
+                
+                if tx_type == "" and rx_type == "":
+                    tone_mode = ""  # No tone
+                elif tx_type == "Tone" and rx_type == "":
+                    tone_mode = "Tone"  # TX CTCSS only
+                elif tx_type == "Tone" and rx_type == "Tone" and r_v == c_v:
+                    tone_mode = "TSQL"  # Same CTCSS both ways
+                elif tx_type == "DTCS" and rx_type == "DTCS" and r_v == c_v:
+                    tone_mode = "DTCS"  # Same DCS code both ways
+                    rd_code = "023"  # CHIRP: RxDtcsCode unused in simple DTCS
+                else:
+                    # Any other combination is Cross mode
+                    tone_mode = "Cross"
+                    cross_mode = f"{tx_type}->{rx_type}"
                 
                 # Split names: 6 bytes in record, 10 bytes in overflow
                 r_name = data[15:21]
@@ -388,14 +412,15 @@ def main():
                 name = decode_text_gbk(r_name + o_name)
                 
                 f12 = data[12]
-                power = ["70.0W", "25.0W", "10.0W"][(f12 & 0xC0) >> 6] if (f12 & 0xC0) >> 6 < 3 else "70.0W"
+                power = ["70W", "25W", "10W"][(f12 & 0xC0) >> 6] if (f12 & 0xC0) >> 6 < 3 else "70W"
                 mode = ["FM", "FM", "NFM"][(f12 & 0x30) >> 4] if (f12 & 0x30) >> 4 < 3 else "FM"
                 
                 # Skip is 'S' if bit is 0 (Disabled), empty if bit is 1 (Enabled)
                 skip = "" if (skip_masks[i // 8] & (1 << (i % 8))) else "S"
                 
                 # Location is 0-based for CHIRP
-                writer.writerow([i, name, rx_f, duplex, offset, tone_mode, r_ts, c_ts, d_code, pol, rd_code, "Tone->Tone", mode, "2.50", skip, power, "", "", "", "", ""])
+                #   rToneFreq=tone_tx, cToneFreq=tone_rx per CHIRP convention
+                writer.writerow([i, name, rx_f, duplex, offset, tone_mode, tone_tx, tone_rx, d_code, pol, rd_code, cross_mode, mode, "2.50", skip, power, "", "", "", "", ""])
 
         # 2. Settings (Global + Signaling + GPS + Radio)
         with open(out_settings, 'w', newline='') as f:
@@ -642,29 +667,51 @@ def main():
                 data[0:4], data[4:8] = encode_freq(str(rx_f)), encode_freq(str(tx_f))
                 
                 t_mode = row.get("Tone") or ""
-                r_ts, c_ts = row.get("rToneFreq") or "88.5", row.get("cToneFreq") or "88.5"
-                d_code, rd_code = row.get("DtcsCode") or "023", row.get("RxDtcsCode") or "023"
-                pol = row.get("DtcsPolarity") or "NN"
+                # CHIRP: rToneFreq="Tone"=TX tone, cToneFreq="ToneSql"=RX squelch
+                tone_tx = row.get("rToneFreq") or "88.5"  # TX CTCSS
+                tone_rx = row.get("cToneFreq") or "88.5"  # RX CTCSS
+                d_code = row.get("DtcsCode") or "023"      # TX DCS
+                rd_code = row.get("RxDtcsCode") or "023"   # RX DCS
+                pol = row.get("DtcsPolarity") or "NN"       # TX pol + RX pol
                 
                 # Default bytes: Inactive Tone
+                # rtw = radio RX (decode), ctw = radio TX (encode)
                 rtw, ctw = 0x0FFF, 0x0FFF
                 
                 if t_mode == "Tone":
-                    val = int(float(c_ts) * 10)
+                    # CHIRP: Tone mode uses rToneFreq ("Tone") for TX
+                    val = int(float(tone_tx) * 10)
                     ctw = val & 0x0FFF
                 elif t_mode == "TSQL":
-                    val = int(float(c_ts) * 10)
+                    # CHIRP: TSQL mode uses cToneFreq ("ToneSql") for both
+                    val = int(float(tone_rx) * 10)
                     rtw, ctw = val & 0x0FFF, val & 0x0FFF
                 elif t_mode == "DTCS":
-                    rv, cv = int(rd_code), int(d_code)
-                    rtw = (rv & 0x0FFF) | (0x4000 if "R" in pol[:1] else 0)
-                    ctw = (cv & 0x0FFF) | (0x8000 if "R" in pol[1:] else 0)
+                    cv = int(d_code, 8)
+                    rv = cv  # CHIRP DTCS mode: same code for both TX and RX
+                    # pol[0]=TX polarity, pol[1]=RX polarity
+                    rtw = (rv & 0x0FFF) | (0x4000 if pol[1:2] == "R" else 0)
+                    ctw = (cv & 0x0FFF) | (0x8000 if pol[0:1] == "R" else 0)
                 elif t_mode == "Cross":
-                    # Simple heuristic: if it looks like DCS (no dot), treat as DCS
-                    rv = int(r_ts) if "." not in r_ts else int(float(r_ts) * 10)
-                    cv = int(c_ts) if "." not in c_ts else int(float(c_ts) * 10)
-                    rtw = (rv & 0x0FFF) | (0x4000 if (rv <= 511 and "R" in pol[:1]) else 0)
-                    ctw = (cv & 0x0FFF) | (0x8000 if (cv <= 511 and "R" in pol[1:]) else 0)
+                    cross_mode = row.get("CrossMode") or "Tone->Tone"
+                    cross_parts = cross_mode.split("->")
+                    # CrossMode format: "TX_type->RX_type"
+                    tx_type = cross_parts[0].strip() if len(cross_parts) > 0 else "Tone"
+                    rx_type = cross_parts[1].strip() if len(cross_parts) > 1 else "Tone"
+                    # RX side (radio decode = rtw)
+                    if rx_type == "DTCS":
+                        rv = int(rd_code, 8)
+                        rtw = (rv & 0x0FFF) | (0x4000 if pol[1:2] == "R" else 0)
+                    elif rx_type == "Tone":
+                        rv = int(float(tone_rx) * 10)
+                        rtw = rv & 0x0FFF
+                    # TX side (radio encode = ctw)
+                    if tx_type == "DTCS":
+                        cv = int(d_code, 8)
+                        ctw = (cv & 0x0FFF) | (0x8000 if pol[0:1] == "R" else 0)
+                    elif tx_type == "Tone":
+                        cv = int(float(tone_tx) * 10)
+                        ctw = cv & 0x0FFF
 
                 data[8:10], data[10:12] = rtw.to_bytes(2, 'little'), ctw.to_bytes(2, 'little')
                 
